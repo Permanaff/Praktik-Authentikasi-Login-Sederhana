@@ -1,35 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koneksi Flask dan MySQL</title>
-</head>
-<body>
-    <div class="container">
-        <h1>Koneksi Flask dan MySQL</h1>
-        <div class="mb-3"></div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Password</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for row in users %}
-                <tr>
-                    <th scope="row">{{ row.0 }}</th>
-                    <td>{{ row.1 }}</td>
-                    <td>{{ row.2 }}</td>
-                    <td>{{ row.3 }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+{% extends 'layout.html' %}
+{% block head %}
+<title>Home</title>
+{%endblock%}
+{%block body%}
+<nav class="navbar navbar-expand-lg" style="background-color: #83A2FF;">
+    <div class="container px-5">
+        <a class="navbar-brand fw-bold" href="/home">PWP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <form method="POST" action="/logout">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </ul>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</nav>
+<div class="container">
+    <div class="mb-3"></div>
+    <div class="mb-3"></div>
+    {% for user in users %}
+        <p class="fs-2">Selamat Datang,</p>
+        <div class="container">
+            <p class="fs-4 fw-bold">Nama : {{ user['nama'] }}</p>
+            <p class="fs-4 fw-bold">Nim : {{ user['nim'] }}</p>
+        </div>
+    {% endfor %}
+    </div>    
+</div>
+
+{%endblock%}
